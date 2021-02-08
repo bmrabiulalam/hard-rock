@@ -48,3 +48,4 @@ const showLyrics = lyrics => {
     lyricsContainer.scrollIntoView();
 }
 else alert("Sorry! Lyrics not found for this song.");
+}
