@@ -41,7 +41,5 @@ const getLyrics = (artist, title) => {
 
 const showLyrics = lyrics => {
     const lyricsContainer = document.getElementById('lyrics-container');
-    lyricsContainer.innerHTML = `
-        <p>${lyrics}</p>
-    `;
+    lyricsContainer.innerText = lyrics;
 }
