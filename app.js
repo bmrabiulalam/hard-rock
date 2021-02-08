@@ -2,8 +2,8 @@ const findSongs = () => {
     const searchText = document.getElementById('lyric-search').value;
     const url = `https://api.lyrics.ovh/suggest/${searchText}`;
     fetch(url)
-    .then(response => response.json())
-    .then(data => showSongs(data.data));
+        .then(response => response.json())
+        .then(data => showSongs(data.data));
 }
 
 const showSongs = songs => {
@@ -17,7 +17,7 @@ const showSongs = songs => {
 
         const singleSongDiv = document.createElement('div');
         singleSongDiv.className = "single-result row align-items-center my-3 p-3";
-        
+
         const details = `
             <div class="col-md-9">
                 <h3 class="lyrics-name">${title}</h3>
@@ -32,21 +32,24 @@ const showSongs = songs => {
         singleSongDiv.innerHTML = details;
         songContainer.appendChild(singleSongDiv);
     });
-}  
+}
 
 const getLyrics = (artist, title) => {
     const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
     fetch(url)
-    .then(response => response.json())
-    .then(data => showLyrics(data.lyrics))
-    .catch(error => alert("Sorry! Lyrics not found for this song."));
+        .then(response => response.json())
+        .then(data => showLyrics(data.lyrics))
+        .catch(error => alert("Sorry! Lyrics not found for this song."));
 }
 
 const showLyrics = lyrics => {
-    if(lyrics.length > 0){
-    const lyricsContainer = document.getElementById('lyrics-container');
-    lyricsContainer.innerText = lyrics;
-    lyricsContainer.scrollIntoView();
-}
-else alert("Sorry! Lyrics not found for this song.");
+    if (lyrics.length > 0) {
+        const lyricsContainer = document.getElementById('lyrics-container');
+        lyricsContainer.innerText = lyrics;
+        lyricsContainer.scrollIntoView();
+    }
+    else { 
+        document.getElementById('lyrics-container').innerText = "";
+        alert("Sorry! Lyrics not found for this song."); 
+    }
 }
