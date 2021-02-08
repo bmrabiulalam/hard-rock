@@ -37,10 +37,14 @@ const getLyrics = (artist, title) => {
     const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
     fetch(url)
     .then(response => response.json())
-    .then(data => showLyrics(data.lyrics));
+    .then(data => showLyrics(data.lyrics))
+    .catch(error => alert("Sorry! Lyrics not found for this song."));
 }
 
 const showLyrics = lyrics => {
+    if(lyrics.length > 0){
     const lyricsContainer = document.getElementById('lyrics-container');
     lyricsContainer.innerText = lyrics;
+    lyricsContainer.scrollIntoView();
 }
+else alert("Sorry! Lyrics not found for this song.");
