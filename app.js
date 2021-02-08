@@ -31,7 +31,7 @@ const showSongs = songs => {
         singleSongDiv.innerHTML = details;
         songContainer.appendChild(singleSongDiv);
     });
-}
+}  
 
 const getLyrics = (artist, title) => {
     const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
