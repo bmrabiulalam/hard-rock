@@ -8,6 +8,7 @@ const findSongs = () => {
 
 const showSongs = songs => {
     const songContainer = document.getElementById('song-container');
+    songContainer.innerHTML = '';
     songs.forEach(song => {
         const title = song.title;
         const artist = song.artist.name;
