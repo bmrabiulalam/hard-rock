@@ -1,10 +1,19 @@
 const findSongs = () => {
     const searchText = document.getElementById('lyric-search').value;
     const url = `https://api.lyrics.ovh/suggest/${searchText}`;
+    toggleSpinner();
     fetch(url)
-        .then(response => response.json())
-        .then(data => showSongs(data.data));
+    .then(response => response.json())
+    .then(data => showSongs(data.data));
 }
+
+document.getElementById('lyric-search')
+    .addEventListener('keypress', event => {
+        if(event.key == 'Enter'){
+            // document.getElementById('search-btn').click();
+            findSongs();
+        }
+    });
 
 const showSongs = songs => {
     const songContainer = document.getElementById('song-container');
@@ -32,6 +41,7 @@ const showSongs = songs => {
         singleSongDiv.innerHTML = details;
         songContainer.appendChild(singleSongDiv);
     });
+    toggleSpinner();
 }
 
 const getLyrics = (artist, title) => {
@@ -52,4 +62,11 @@ const showLyrics = lyrics => {
         document.getElementById('lyrics-container').innerText = "";
         alert("Sorry! Lyrics not found for this song."); 
     }
+}
+
+const toggleSpinner = () => {
+    const spinner = document.getElementById('loading-spinner');
+    spinner.classList.toggle('d-none');
+    const songs = document.getElementById('song-container');
+    songs.classList.toggle('d-none');
 }
